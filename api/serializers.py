@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-
+from rest_framework.authtoken.models import Token
 from blog.models import Article
 
 
@@ -14,6 +14,8 @@ class ArticleSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
+    email = serializers.EmailField()
+
     class Meta:
         model = User
         fields = ['username', 'email', 'password']
@@ -26,4 +28,5 @@ class UserSerializer(serializers.ModelSerializer):
         )
         user.set_password(validated_data['password'])
         user.save()
+        Token.objects.create(user=user)
         return user
