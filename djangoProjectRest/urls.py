@@ -13,13 +13,17 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+# from allauth.account.views import ConfirmEmailView
 from django.contrib import admin
-from django.urls import path, include
-from rest_framework.authtoken.views import obtain_auth_token
-
+from django.urls import path, include, re_path
+# from django.views.generic import TemplateView
+# from rest_framework.authtoken.views import obtain_auth_token
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
-    path('api-token-auth/',obtain_auth_token),
+    # path('api-token-auth/',obtain_auth_token),
+    # re_path(r'^account-confirm-email/(?P<key>[-:\w]+)/$', TemplateView.as_view(template_name='blog/confirm.html'),
+    #         name='account_confirm_email'),
     path('', include('blog.urls')),
+
 ]

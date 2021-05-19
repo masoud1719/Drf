@@ -37,8 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'blog.apps.BlogConfig',
+    'django.contrib.sites',
+    'rest_framework.authtoken',
+    # 'dj_rest_auth',
+    # 'allauth',
+    # 'allauth.account',
+    # 'allauth.socialaccount',
+    # 'dj_rest_auth.registration',
     'api.apps.ApiConfig',
-    'rest_framework.authtoken'
 
 ]
 
@@ -128,6 +134,10 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'api.permissions.IsStaffOrReadOnly',
     ], 'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',  
+        # 'rest_framework.authentication.TokenAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
+
 }
+SITE_ID = 1
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

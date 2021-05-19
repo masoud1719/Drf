@@ -33,14 +33,14 @@ class UserListView(ListAPIView):
     serializer_class = UserSerializer
 
 
-class UserCreateView(CreateAPIView):
-    permission_classes = [AllowAny]
-
-    def get_queryset(self):
-        print(self.request.user)
-        return User.objects.all()
-
-    serializer_class = UserSerializer
+# class UserCreateView(CreateAPIView):
+#     permission_classes = [AllowAny]
+#
+#     def get_queryset(self):
+#         print(self.request.user)
+#         return User.objects.all()
+#
+#     serializer_class = UserSerializer
 
 
 class UserDetailView(RetrieveAPIView):
@@ -52,11 +52,12 @@ class UserDetailView(RetrieveAPIView):
 
     serializer_class = UserSerializer
 
+#
+# class RevokeToken(APIView):
+#     permission_classes = [IsAuthenticated]
+#
+#     def delete(self, request):
+#         request.auth.delete()
+#         return Response(status=status.HTTP_204_NO_CONTENT)
 
-class RevokeToken(APIView):
-    permission_classes = [IsAuthenticated]
-
-    def delete(self, request):
-        request.auth.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
 
